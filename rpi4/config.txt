@@ -15,6 +15,10 @@ camera_auto_detect=1
 dtoverlay=dwc2
 dtoverlay=vc4-kms-v3d
 
+# Adding gpio-key
+gpio=16,20,21=ip,pu
+dtoverlay=arpi-gpio-keys
+
 max_framebuffers=2
 
 # Automatically load overlays for detected DSI displays

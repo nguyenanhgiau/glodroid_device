@@ -183,6 +183,11 @@ BOOT_FILES := \
     $(RPI_FIRMWARE_DIR)/boot/bcm2710-rpi-3-b-plus.dtb \
     $(PRODUCT_OUT)/obj/KERNEL_OBJ/arch/$(TARGET_ARCH)/boot/dts/$(KERNEL_DTB_FILE) \
 
+CUSTOM_RPI_OVERLAY_DIR := $(PRODUCT_OUT)/obj/KERNEL_OBJ/arch/$(TARGET_ARCH)/boot/dts/overlays
+
+CUSTOM_RPI_OVERLAY_FILES := \
+	$(CUSTOM_RPI_OVERLAY_DIR)/arpi-gpio-keys.dtbo
+
 OVERLAY_FILES := $(sort $(shell find -L $(RPI_FIRMWARE_DIR)/boot/overlays))
 
 $(PRODUCT_OUT)/bootloader-sd.img: $(UBOOT_BINARY) $(OVERLAY_FILES) $(ATF_BINARY) $(RPI_CONFIG) $(KERNEL_BINARY)
@@ -194,6 +199,7 @@ $(PRODUCT_OUT)/bootloader-sd.img: $(UBOOT_BINARY) $(OVERLAY_FILES) $(ATF_BINARY)
 	/usr/bin/mcopy -i $@ $(BOOT_FILES) ::
 	/usr/bin/mmd -i $@ ::overlays
 	/usr/bin/mcopy -i $@ $(OVERLAY_FILES) ::overlays/
+	/usr/bin/mcopy -i $@ $(CUSTOM_RPI_OVERLAY_FILES) ::overlays/
 endif
 
 ifneq ($(PRODUCT_HAS_EMMC),)
