@@ -21,6 +21,10 @@ dtoverlay=vc4-kms-v3d
 gpio=16,20,21=ip,pu
 dtoverlay=arpi-gpio-keys
 
+# Set GPIO12 to be an output set to 0
+gpio=12=op,dl
+dtoverlay=arpi-gpio-leds
+
 max_framebuffers=2
 
 # Automatically load overlays for detected DSI displays
