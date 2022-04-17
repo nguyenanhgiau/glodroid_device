@@ -1,6 +1,8 @@
 dtparam=audio=on
 dtparam=krnbt=on
 dtparam=uart1=on
+dtparam=i2c_arm=on
+dtparam=spi=on
 
 [all]
 start_x=1
