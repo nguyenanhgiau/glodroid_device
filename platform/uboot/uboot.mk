@@ -187,7 +187,8 @@ CUSTOM_RPI_OVERLAY_DIR := $(PRODUCT_OUT)/obj/KERNEL_OBJ/arch/$(TARGET_ARCH)/boot
 
 CUSTOM_RPI_OVERLAY_FILES := \
 	$(CUSTOM_RPI_OVERLAY_DIR)/arpi-gpio-keys.dtbo \
-	$(CUSTOM_RPI_OVERLAY_DIR)/arpi-gpio-leds.dtbo
+	$(CUSTOM_RPI_OVERLAY_DIR)/arpi-gpio-leds.dtbo \
+	$(CUSTOM_RPI_OVERLAY_DIR)/mpu9250.dtbo
 
 OVERLAY_FILES := $(sort $(shell find -L $(RPI_FIRMWARE_DIR)/boot/overlays))
 
