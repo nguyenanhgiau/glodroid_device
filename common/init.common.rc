@@ -29,6 +29,12 @@ on early-init
     exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d \
         /vendor/lib/modules i2c-dev
 
+    chmod 0666 /sys/class/i2c-adapter/i2c-0/new_device
+    chmod 0666 /sys/class/i2c-adapter/i2c-1/new_device
+
+    # Support EEPROM AT24C256
+    write /sys/class/i2c-adapter/i2c-0/new_device "24c256 0x50"
+
 on fs
     mount_all /vendor/etc/fstab.${ro.hardware} --early
     setprop ro.crypto.fuse_sdcard false
