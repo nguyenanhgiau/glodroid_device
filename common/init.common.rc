@@ -25,28 +25,6 @@ on early-init
     chown bluetooth net_bt /sys/class/rfkill/rfkill0/device/extldo
     chmod 0660 /sys/class/rfkill/rfkill0/device/extldo
 
-    # I2C interface
-    exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d \
-        /vendor/lib/modules i2c-dev
-
-    chmod 0666 /sys/class/i2c-adapter/i2c-0/new_device
-    chmod 0666 /sys/class/i2c-adapter/i2c-1/new_device
-
-    # Support EEPROM AT24C256
-    write /sys/class/i2c-adapter/i2c-0/new_device "24c256 0x50"
-
-    # Support temp + press sensor: BMP280
-    write /sys/class/i2c-adapter/i2c-1/new_device "bmp280 0x76"
-
-    # Support proximity sensor: VL53L0X
-    write /sys/class/i2c-adapter/i2c-1/new_device "vl53l0x 0x29"
-
-    # Support light sensor: BH1750
-    write /sys/class/i2c-adapter/i2c-1/new_device "bh1750 0x23"
-
-    # Support RTC DS1307
-    write /sys/class/i2c-adapter/i2c-1/new_device "ds1307 0x68"
-
 on fs
     mount_all /vendor/etc/fstab.${ro.hardware} --early
     setprop ro.crypto.fuse_sdcard false
