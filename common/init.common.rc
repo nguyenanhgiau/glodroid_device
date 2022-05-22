@@ -41,6 +41,9 @@ on early-init
     # Support proximity sensor: VL53L0X
     write /sys/class/i2c-adapter/i2c-1/new_device "vl53l0x 0x29"
 
+    # Support light sensor: BH1750
+    write /sys/class/i2c-adapter/i2c-1/new_device "bh1750 0x23"
+
 on fs
     mount_all /vendor/etc/fstab.${ro.hardware} --early
     setprop ro.crypto.fuse_sdcard false
