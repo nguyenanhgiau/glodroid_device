@@ -38,6 +38,9 @@ on early-init
     # Support temp + press sensor: BMP280
     write /sys/class/i2c-adapter/i2c-1/new_device "bmp280 0x76"
 
+    # Support proximity sensor: VL53L0X
+    write /sys/class/i2c-adapter/i2c-1/new_device "vl53l0x 0x29"
+
 on fs
     mount_all /vendor/etc/fstab.${ro.hardware} --early
     setprop ro.crypto.fuse_sdcard false
