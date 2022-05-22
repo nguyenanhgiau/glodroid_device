@@ -35,6 +35,9 @@ on early-init
     # Support EEPROM AT24C256
     write /sys/class/i2c-adapter/i2c-0/new_device "24c256 0x50"
 
+    # Support temp + press sensor: BMP280
+    write /sys/class/i2c-adapter/i2c-1/new_device "bmp280 0x76"
+
 on fs
     mount_all /vendor/etc/fstab.${ro.hardware} --early
     setprop ro.crypto.fuse_sdcard false
